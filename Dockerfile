@@ -7,9 +7,6 @@ RUN apt-get -y install python3-pip
 COPY requirements.txt /build
 WORKDIR pip install -r requirements.txt
 
-# For MySQL use
-ENV MYSQL_RANDOM_ROOT_PASSWORD=yes
-
 # Setup Build Machine
 FROM base AS build_machine
 RUN apt-get -y install git curl wget ca-certificates gnupg lsb-release
