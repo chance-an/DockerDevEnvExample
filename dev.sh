@@ -1,5 +1,4 @@
 container_name=jiayuan_devenv
-docker_image_name=jiayuan_dental_devenv
 source_path=/source/jiayuan_dental
 
 export MSYS_NO_PATHCONV=1
@@ -25,7 +24,7 @@ if ! [ "$( docker container inspect -f '{{.State.Status}}' $container_name )" ==
    -v /var/run/docker.sock:/var/run/docker.sock \
    -p 3306:3306 \
    --env MYSQL_ROOT_PASSWORD=$MYSQL_PASSWORD \
-   $docker_image_name:latest
+   $JY_DEVENV_DOCKER_HUB_REPO:latest
 fi
 
 if [ -z "$MSYSTEM_CARCH" ]; then
