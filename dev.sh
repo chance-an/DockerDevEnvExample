@@ -23,7 +23,12 @@ if ! [ "$( docker container inspect -f '{{.State.Status}}' $container_name )" ==
    --volume=$(pwd):$source_path \
    -v /var/run/docker.sock:/var/run/docker.sock \
    -p 3306:3306 \
+   # The MYSQL_* environment variable only work the first time a container is started.
+   # If a volume was pre-mounted, the data will stay untouched. If
+   # you want to have the following MYSQL_* env vars take effect, delete the container
+   # then start a new one.
    --env MYSQL_ROOT_PASSWORD=$MYSQL_PASSWORD \
+   --env MYSQL_DATABASE=$MYSQL_DATABASE \
    $JY_DEVENV_DOCKER_HUB_REPO:latest
 fi
 
