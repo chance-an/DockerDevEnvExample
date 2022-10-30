@@ -1,4 +1,5 @@
 -- migrate:up
+SET FOREIGN_KEY_CHECKS = 0;
 CREATE TABLE users
 (
     id INT AUTO_INCREMENT PRIMARY KEY COMMENT 'Primary key',
@@ -9,6 +10,7 @@ CREATE TABLE users
     created TIMESTAMP DEFAULT CURRENT_TIMESTAMP COMMENT 'Created time',
     modified TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT 'Modified time'
 );
+SET FOREIGN_KEY_CHECKS = 1;
 
 -- migrate:down
 DROP TABLE users;
