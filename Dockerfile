@@ -12,6 +12,9 @@ FROM base AS build_machine
 RUN apt-get -y install git curl wget ca-certificates gnupg lsb-release
 # docker
 RUN apt-get -y install docker.io
+# dbmate
+RUN curl -fsSL -o /usr/local/bin/dbmate https://github.com/amacneil/dbmate/releases/latest/download/dbmate-linux-amd64
+RUN chmod +x /usr/local/bin/dbmate
 
 # Setup DevEnv
 FROM build_machine AS dev_env

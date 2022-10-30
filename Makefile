@@ -40,10 +40,6 @@ release_bmachine:
 release_devenv: ensure_docker_login
 	docker push $$JY_DEVENV_DOCKER_HUB_REPO:latest
 
-test: precheck
-	@echo $$JY_DEVENV_DOCKER_HUB_PASSWORD | docker login -u $$JY_DEVENV_DOCKER_HUB_USERNAME \
-     		--password-stdin
-
 .PHONY: ensure_docker_login
 ensure_docker_login: precheck
 	@result=$$(cat ~/.docker/config.json |  \
@@ -57,3 +53,14 @@ ensure_docker_login: precheck
                      		--password-stdin; \
  	fi; \
 
+.PHONY: initialize_db_env
+initialize_db_env: precheck
+	$(eval DATABASE_URL :=mysql://root:$(MYSQL_PASSWORD)@127.0.0.1:3306/$(MYSQL_DATABASE))
+
+.PHONY: db_up
+db_up: initialize_db_env
+	dbmate up
+
+.PHONY: db_rollback
+db_rollback: initialize_db_env
+	dbmate rollback
