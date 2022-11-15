@@ -1,4 +1,4 @@
-# Jiayuan Dental FlaskService (The backend)
+# A FlaskService (The backend)
 
 ## Run development environment
 

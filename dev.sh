@@ -1,5 +1,5 @@
-container_name=jiayuan_devenv
-source_path=/source/jiayuan_dental
+container_name=my_devenv
+source_path=/source
 
 export MSYS_NO_PATHCONV=1
 
